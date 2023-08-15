@@ -54,7 +54,7 @@ class CaixaDaLanchonete {
         itens.forEach(produto => {
             const produtoPrincipal = this.lanchoneteCardapio.pegarCodigoDoItem(produto.codigo);
             if (!produtoPrincipal) {
-                return 'Item inválido!';
+                throw new Error ('Item inválido!');
             }
 
             valorTotal = valorTotal + produtoPrincipal.valor;
@@ -62,7 +62,7 @@ class CaixaDaLanchonete {
             if (produto.extra) {
                 const produtoExtra = this.lanchoneteCardapio.pegarCodigoDoItem(produto.extra);
                 if (!produtoExtra) {
-                    return 'Item extra não pode ser pedido sem o principal';
+                    throw new Error ('Item extra não pode ser pedido sem o principal');
                 }
             
                 valorTotal = valorTotal + produtoExtra.valor;
@@ -85,11 +85,18 @@ class CaixaDaLanchonete {
     }
 
 }
-
-const pedidoExemplo = [new PedidoCliente('cafe', 'chantily')];
-  const formaPagamentoExemplo = 'debito';
+try{
+    const pedidoExemplo = [new PedidoCliente('cafe', 'chantily')];
+    const formaPagamentoExemplo = 'debito';
   
-  const caixa = new CaixaDaLanchonete();
-  console.log(caixa.calcularValorDaCompra(formaPagamentoExemplo, pedidoExemplo));
+    const caixa = new CaixaDaLanchonete();
+    console.log(caixa.calcularValorDaCompra(formaPagamentoExemplo, pedidoExemplo));
+
+}
+catch(error){
+    console.log(error);
+
+}
+
 
 export { CaixaDaLanchonete };
