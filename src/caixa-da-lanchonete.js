@@ -1,11 +1,5 @@
-// Classe usada para criar os objetos.
-class Cardapio {
-    constructor(codigo, descricao, valor) {
-        this.codigo = codigo;
-        this.descricao = descricao;
-        this.valor = valor;
-    }
-}
+import { Cardapio } from "./Cardapio.js";
+import { PedidoCliente } from "./PedidoCliente.js";
 
 // Classe responsável por manter o cardápio
 // Foi criada um array com as instanciações de Cardapio.
@@ -26,14 +20,6 @@ class LanchoneteCardapio {
     // Verifica se o produto atual é igual ao código.
     pegarCodigoDoItem(codigo) {
         return this.cardapio.find(produto => produto.codigo === codigo);
-    }
-}
-
-// Classe para representar os pedidos dos clientes
-class PedidoCliente {
-    constructor(codigo, produtoExtra = null) {
-        this.codigo = codigo;
-        this.extra = produtoExtra;
     }
 }
 
@@ -99,4 +85,5 @@ catch(error){
 }
 
 
-export { CaixaDaLanchonete };
+export { CaixaDaLanchonete};
+
